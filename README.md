@@ -1,6 +1,6 @@
 # Learning Space
 
-My digital garden for my studies, whatever the field. I dump raw material in; atomic, linked study notes come out.
+My digital garden for my cybersecurity degree. I dump raw material in; atomic, linked study notes come out.
 
 Want to make your own? See the [setup guide](SETUP.md).
 
@@ -10,9 +10,9 @@ Everything runs through chat with my coding agent. There are three moves:
 
 ### 1. Process class notes
 
-1. Drop raw notes into `inbox/<subject>/` — one subdirectory per subject (e.g. `inbox/cryptography/`). Don't clean them up.
-2. Say: *"process my <subject> notes"* — or just *"process my notes"* to do every subject at once.
-3. The agent splits them into atomic notes in `notes/` (one concept per file), fixes errors, fills gaps, adds Mermaid diagrams automatically when a concept benefits from visual structure, cross-links everything, and updates the course index in `maps/`. Raw originals move to `archive/<subject>/`.
+1. Drop raw notes into `inbox/` — Obsidian exports, messy markdown, whatever. Don't clean them up.
+2. Say: *"process my notes"*.
+3. The agent splits them into atomic notes in `notes/` (one concept per file), fixes errors, fills gaps, adds Mermaid diagrams automatically when a concept benefits from visual structure, cross-links everything, and updates the course index in `maps/`. Raw originals move to `archive/`.
 
 Run this after every class (or batch a week at once). Small batches link better.
 
@@ -23,14 +23,7 @@ Run this after every class (or batch a week at once). Small batches link better.
 
 Slides count as ground truth — where they contradict an enriched claim, they win. Additions cite `(slide N)` so I can trace anything back to lecture.
 
-### 3. Enrich with research
-
-1. Drop the paper, article, or docs page into `research/` (a link works too — say *"enrich with <paper>"*).
-2. Say: *"enrich with <source>"*.
-
-Research sources add depth and precision, with inline citations like `(Author, Year, p. 12)`. Where a source contradicts lecture material, both versions are kept side by side and flagged — lecture stays ground truth for exams, but I want to know when the literature disagrees.
-
-### 4. Exam prep
+### 3. Exam prep
 
 When exams approach, say: *"prep me for the <course> exam"*. That generates, in `study/<course>/`:
 
@@ -44,9 +37,8 @@ To drill instead of reading: *"quiz me on <course>"*.
 
 | Path | Purpose |
 |---|---|
-| `inbox/` | Raw class notes, one subdirectory per subject |
+| `inbox/` | Raw class notes, drop zone |
 | `slides/` | Professor slide decks |
-| `research/` | Papers, articles, documentation to merge into notes |
 | `notes/` | The garden — one concept per file, kebab-case names |
 | `maps/` | One index note per course |
 | `study/` | Generated flashcards, problems, plans |

@@ -1,1 +1,19 @@
+# Keep repository metadata and agent instructions; ignore personal study content.
+*
+!.gitignore
+!AGENTS.md
+!README.md
+
+# Keep agent configuration and skills.
+!.agents/
+!.agents/**
+
+# Keep empty-directory placeholders so the directory structure is tracked.
+!*/
+!*/.gitkeep
+
+# Ignore local Obsidian settings.
+.obsidian/
+
+# Ignore pi's local goal state.
 .pi-glla/
