@@ -6,10 +6,10 @@ A personal digital garden for my studies. Raw material goes in one end; atomic, 
 
 | Path | Purpose |
 |---|---|
-| `inbox/` | Drop zone for raw class notes, kept exactly as written |
-| `slides/` | Professor slide decks, named `<course>-<topic>-<date>` when known |
+| `inbox/` | Drop zone for raw study material, kept exactly as written |
+| `slides/` | Instructor or reference slide decks, named `<course>-<topic>-<date>` when known |
 | `notes/` | The garden: curated atomic notes, one concept per file |
-| `maps/` | One index note per course, linking every note it covers |
+| `maps/` | One index note per course or subject, linking every note it covers |
 | `study/` | Generated exam material: flashcards, problem sets |
 | `outputs/` | Generated Q&A answers from the ask-garden skill (one file per question) |
 | `archive/` | Processed raw notes, moved here after ingestion |
@@ -32,7 +32,18 @@ A personal digital garden for my studies. Raw material goes in one end; atomic, 
 
   Put the opening delimiter around the complete expression before writing it and always add the matching closing delimiter. Never leave LaTeX commands or syntax such as `\alpha`, `x^2`, `x_i`, or `\frac{a}{b}` bare in curated prose. Preserve raw `inbox/` files exactly as written, but normalize their math when producing a curated note.
 - **Diagrams**: Add Mermaid diagrams automatically when a concept benefits from visual structure — for example, processes, hierarchies, flows, state machines, cycles, or taxonomies. Use them even when the source notes contain no diagram marker.
-- **Honesty**: enrich from general knowledge freely, but mark anything uncertain or not covered in class with `> [!warning] Not from lecture` so I know what to verify against my professor's materials.
+- **Honesty**: enrich from general knowledge freely, but mark anything uncertain or not covered in the source material with `> [!warning] Not from lecture` so I know what to verify.
+
+## Atomization gate
+
+A curated note is atomic when it teaches **one independently nameable concept** that a reader could search for, tag, link to, or be quizzed on.
+
+- Keep the definition, mechanism, examples, caveats, and links for that one concept together.
+- Create a separate note for every independently useful concept supported by the source. Do not use a broad topic, taxonomy, or catalog note as a substitute for its component notes.
+- An overview note is valid when its purpose is orientation or relationships; it should link to the component notes rather than absorb their substantive explanations.
+- A note fails the gate when it has sibling concepts as separate primary sections (for example, several attack types, theories, or algorithms). Split those concepts unless they are only brief context.
+- Before writing, inventory each source concept as `new note`, `extend existing note`, `overview/link only`, or `fold into existing note`, with a reason. Every concept with enough material to stand alone must end in its own note.
+- After writing, verify that every inventory entry is accounted for, every standalone concept has a note, and no generated note fails the sibling-concept test. Apply this gate whenever a workflow creates, substantially expands, or reorganizes curated notes.
 
 ## Workflows
 
