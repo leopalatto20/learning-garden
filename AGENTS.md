@@ -38,4 +38,5 @@ A personal digital garden for my studies. Raw material goes in one end; atomic, 
 
 - New raw notes sitting in `inbox/` → use the **process-notes** skill.
 - New deck uploaded to `slides/` → use the **enrich-slides** skill.
+- New research source added to `research/` → use the **enrich-research** skill.
 - Exam season → use the **exam-prep** skill.
