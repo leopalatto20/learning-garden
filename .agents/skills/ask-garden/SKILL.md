@@ -1,30 +1,21 @@
 ---
 name: ask-garden
-description: Answer questions from the garden's notes — use when the user asks to explain, define, compare, or answer anything about course material, topics, or concepts covered in notes/.
+description: Answer questions from garden notes. Trigger for explanations, definitions, comparisons, or other questions about concepts covered in notes/.
 ---
 
 # Ask Garden
 
-Produce a **grounded** answer written to a Markdown file in `outputs/`: every claim traces to a garden note, and coverage follows tags and links so the answer spans all relevant notes, not just the first hit. Writing to a file (instead of replying inline) is what unlocks rendered Mermaid diagrams, tables and MathJax in Obsidian.
+Write a grounded Markdown answer to `outputs/`. Every claim must come from a relevant garden note or be marked as general knowledge; search the whole relevant note neighborhood, not just the first match.
 
 ## Steps
 
-1. **Resolve the question to concepts**: name each concept in kebab-case (`bayes-theorem`, `red-black-tree`) — these are candidate filenames and tag values.
-2. **Find every relevant note**, not just one:
-   - grep `notes/` frontmatter for the concept names among `tags:` values;
-   - grep note bodies for the concept names;
-   - read the course map in `maps/` covering those notes and pull its other entries on the topic.
-3. **Expand along the Links sections** of every note found: each neighbor explains *why* it relates, which decides whether it belongs in the answer (e.g. contrast pairs, foundations). Stop when no new relevant note appears.
-4. **Write the answer** to `outputs/<conceptos>.md` — filename in kebab-case Spanish matching the question (`que-es-la-entropia.md`, `diferencia-entre-que-y-como.md`):
-   - frontmatter: `question`, plus `created`/`updated`; add `course` when all source notes share one;
-   - open with the direct answer, then the supporting detail (headings, tables);
-   - attribute structure to the notes' own framing (their warnings, corrections, and simplifications carry into the answer);
-   - add a Mermaid diagram whenever the concept benefits from visual structure — flows, contrasts, state machines — even if the source notes have none;
-   - link source notes inline as wikilinks where a reader would want to dig deeper (they resolve from anywhere in the vault);
-   - anything added from general knowledge goes under `> [!warning] Not from lecture`.
-5. **Math gate**: if the answer contains mathematics, apply the **Math / LaTeX** rules in `AGENTS.md` before finishing — `$...$` inline, `$$` on its own lines around display math, never bare LaTeX in prose.
-6. **Reply briefly in chat**: a 2–3 sentence summary of the direct answer plus the file path. The full answer lives in the file.
+1. **Resolve concepts.** Translate the question into candidate kebab-case filenames and tag values.
+2. **Find coverage.** Search note frontmatter and bodies for every concept. Read the relevant course maps and add other entries on the same topic.
+3. **Expand context.** Follow the `Links` sections of every candidate note; keep neighbors whose stated relation bears on the question. Stop when no relevant note remains.
+4. **Write the answer** to `outputs/<conceptos>.md` using a Spanish kebab-case filename matching the question. Include `question`, `created`, and `updated` frontmatter, plus `course` when shared by all source notes. Lead with the direct answer, then supporting detail. Preserve notes' warnings, corrections, and framing; link source notes inline; add Mermaid where visual structure helps; mark general-knowledge additions with `> [!warning] Not from lecture`.
+5. **Apply the math rules** in `AGENTS.md` before finishing.
+6. **Reply briefly** in chat with the direct answer and output path.
 
-Exception: a quick factual follow-up (one line, no diagram or structure) may be answered directly in chat without creating a file.
+A one-line factual follow-up may be answered directly without creating a file.
 
-Done when: the file exists, every claim in it comes from a found note or sits under a warning callout, and every note found in step 2–3 that bears on the question appears in the answer.
+Done when: the output file exists; every claim is grounded or warned; and every relevant note found in steps 2–3 appears in the answer.

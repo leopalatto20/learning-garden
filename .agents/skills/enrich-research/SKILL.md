@@ -1,22 +1,18 @@
 ---
 name: enrich-research
-description: Use a paper, article, or documentation page from research/ to enrich existing notes. Use when the user drops a paper into research/, or mentions reading material, papers, articles, or docs to merge into the notes.
+description: Use a paper, article, or documentation source in research/ to deepen existing notes. Trigger when the user adds or mentions research material to merge into the garden.
 ---
 
 # Enrich Research
 
-Use sources in `research/` to deepen the garden, following the note format in AGENTS.md. Research sources are authoritative for their own claims, but lecture material stays ground truth for exam content: when a source contradicts a lecture-derived claim, do not silently overwrite it — add the source's version alongside and flag the discrepancy so the user can judge.
-
-## Math formatting gate
-
-When a covered note contains mathematics, read and apply the **Math / LaTeX** rules in `AGENTS.md` before writing. Surround inline math with `$...$`; surround display math with an opening `$$` and closing `$$` on separate lines. Treat source LaTeX as content to normalize, not as Markdown delimiters to omit. Never emit a bare formula or LaTeX command in a curated note.
+Integrate sources from `research/` without erasing lecture-grounded claims. A source is authoritative for its own claims; lecture material remains ground truth for exam content. Preserve both sides of a contradiction and flag it for the user.
 
 ## Steps
 
-1. **Extract the source.** For PDFs run `pdftotext` (fall back to other extractors if unavailable); read HTML/markdown files directly; fetch URLs if the source is a link. Read fully before editing anything.
-2. **Map coverage.** List which garden notes each source section touches — including ones it contradicts, extends, or gives better examples than.
-3. **Enrich each covered note**: add missing details, definitions, deeper explanations, and worked examples; replace vague claims with the source's precise wording. Cite inline like `(Author, Year, p. 12)` or `(Docs > <section>)`, so any addition traces back to the exact spot in the source. Anything the source covers that lecture does not keeps its `> [!warning] Not from lecture` status per AGENTS.md.
-4. **Seed new notes** for concepts the source covers that no note has yet, linked into their neighbors and course map.
-5. **Update the course map** if the source reveals structure the map lacks.
+1. **Read the source fully.** Use `pdftotext` for PDFs, read HTML/Markdown directly, and fetch URLs when needed.
+2. **Map coverage.** Account for every source section: identify notes it touches, extends, exemplifies, or contradicts.
+3. **Enrich covered notes.** Add precise definitions, details, explanations, and worked examples; replace vague claims with the source's wording and state corrections. Cite each addition to an author/year/page or document section. Mark material the source covers but lecture does not with the warning required by `AGENTS.md`. Apply the curated-note format, link, math, and diagram rules in `AGENTS.md`.
+4. **Seed missing concepts.** Create atomic notes for uncovered concepts, link them to neighbors, and add them to the course map.
+5. **Update the map** when the source reveals missing structure.
 
-Done when: every source section is accounted for in some note (enriched, seeded, or explicitly noted as out of scope), every contradiction with lecture material is flagged rather than silently resolved, additions carry traceable citations, corrections are stated, and maps are current.
+Done when: every source section is enriched, seeded, or explicitly out of scope; every lecture contradiction is flagged; every addition has a traceable citation; corrections are stated; and affected maps are current.
