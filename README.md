@@ -2,11 +2,9 @@
 
 My digital garden for my cybersecurity degree. I dump raw material in; atomic, linked study notes come out.
 
-Want to make your own? See the [setup guide](SETUP.md).
-
 ## How to use it
 
-Everything runs through chat with my coding agent. There are three moves:
+Everything runs through chat with my coding agent. There are five moves:
 
 ### 1. Process class notes
 
@@ -23,9 +21,22 @@ Run this after every class (or batch a week at once). Small batches link better.
 
 Slides count as ground truth — where they contradict an enriched claim, they win. Additions cite `(slide N)` so I can trace anything back to lecture.
 
-### 3. Exam prep
+### 3. Deepen with research sources
 
-When exams approach, say: *"prep me for the <course> exam"*. That generates, in `study/<course>/`:
+1. Drop papers, docs, or long-form articles into `research/`.
+2. Say: *"merge the research into my notes"*.
+
+Research can explain, extend, or challenge a note, but lecture stays authoritative for exams. Every addition cites its source file and page or section; contradictions with source material are recorded explicitly, never silently overwritten. New concepts the research covers get their own notes and join the right map.
+
+### 4. Ask the garden
+
+Say: *"explain X"*, *"what's the difference between X and Y?"* — any question about course material.
+
+The agent hunts down every relevant note via tags, body text, and the course maps, follows each note's Links sections until nothing new turns up, then writes a grounded answer to `outputs/<conceptos>.md`: every claim traces back to a note, with Mermaid diagrams and wikilinks for digging deeper. Quick factual follow-ups get answered in chat directly.
+
+### 5. Exam prep
+
+When exams approach, say: *"prep me for the <course> exam"*. That generates, in `study/<course>-<exam-or-topic>/`:
 
 - **flashcards.md** — Q/A cards to memorize
 - **problems.md** — worked practice problems at exam difficulty
@@ -39,14 +50,17 @@ To drill instead of reading: *"quiz me on <course>"*.
 |---|---|
 | `inbox/` | Raw class notes, drop zone |
 | `slides/` | Professor slide decks |
+| `research/` | Papers and long-form sources used to deepen notes |
 | `notes/` | The garden — one concept per file, kebab-case names |
 | `maps/` | One index note per course |
+| `outputs/` | Grounded Q&A answers from ask-the-garden |
 | `study/` | Generated flashcards, problems, plans |
 | `archive/` | Processed raw notes |
 
 ## Conventions that matter
 
 - Notes link with `[[wikilinks]]`, so they open fine in Obsidian too.
+- Note content and filenames follow the courses' language (Spanish); tooling prompts are English.
 - Curated Markdown uses MathJax: surround inline expressions with `$...$` and put display expressions between `$$` delimiters on their own lines. For example, write `$x^2$` — never bare `x^2` or `\alpha` in prose.
 - Anything the agent enriched from general knowledge carries a `> [!warning] Not from lecture` callout — verify those against course material before trusting them on an exam.
 - The garden is never done: notes can always be split further, linked further, corrected later.
