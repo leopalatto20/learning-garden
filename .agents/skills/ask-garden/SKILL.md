@@ -11,9 +11,10 @@ Produce a **grounded** answer written to a Markdown file in `outputs/`: every cl
 
 1. **Resolve the question to concepts**: name each concept in kebab-case (`mitosis`, `cell-division`) — these are candidate filenames and tag values.
 2. **Find every relevant note**, not just one:
-   - grep `notes/` frontmatter for the concept names among `tags:` values;
-   - grep note bodies for the concept names;
-   - read the course map in `maps/` covering those notes and pull its other entries on the topic.
+   - **Search by filename** first: `bash find notes/ -iname '*concept*'` — filenames are the canonical concept names per AGENTS.md.
+   - **Search by content**: `bash grep -rli 'pattern' notes/` — always hits disk, always accurate. (You may use `ffgrep` first as a fast-path optimization, but if it returns zero matches, fall back to `bash grep -rli` before concluding the concept is absent.)
+   - **Read the map**: find the course map in `maps/` covering those notes and pull its other entries on the topic.
+   - **Verify with listing**: if unsure whether any notes exist on the topic, `bash ls notes/*concept*` will confirm regardless of any index state.
 3. **Expand along the Links sections** of every note found: each neighbor explains *why* it relates, which decides whether it belongs in the answer (e.g. contrast pairs, foundations). Stop when no new relevant note appears.
 4. **Write the answer** to `outputs/<conceptos>.md` — filename in kebab-case Spanish matching the question (`que-es-la-mitosis.md`, `mitosis-vs-meiosis.md`):
    - frontmatter: `question`, plus `created`/`updated`; add `course` when all source notes share one;
@@ -27,4 +28,4 @@ Produce a **grounded** answer written to a Markdown file in `outputs/`: every cl
 
 Exception: a quick factual follow-up (one line, no diagram or structure) may be answered directly in chat without creating a file.
 
-Done when: the file exists, every claim in it comes from a found note or sits under a warning callout, and every note found in step 2–3 that bears on the question appears in the answer.
+Done when: the file exists, every claim in it comes from a found note or sits under a warning callout, every note found in step 2–3 that bears on the question appears in the answer, and at least one search method that reads disk (find, grep -rli, or ls) was used to locate the notes.
